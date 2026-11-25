@@ -10,7 +10,7 @@ Every step of the project built throughout the course will have a folder that wi
 
 ## Setup Instructions
 
-We recommend using `Node.js version 20` with this course. The project will be built from scratch so most of the folders in this repo are just for reference. Later in the course, the `api` directory will be used to simulate an API server. To get set up, clone the repository:
+Use Node.js 22.13 or later on the 22.x line, or Node.js 24 or later, with this course. The project will be built from scratch so most of the folders in this repo are just for reference. Later in the course, the `api` directory will be used to simulate an API server. To get set up, clone the repository:
 
 ```bash
 git clone https://github.com/btholt/citr-v9-project.git
@@ -36,7 +36,7 @@ The code, including the code of the site itself and the code in the exercises, a
 
 ## Workshop Day 2 Instructions
 
-> Make sure you have Node.js version 20.x.x installed
+> Make sure you have Node.js 22.13 or later on the 22.x line, or Node.js 24 or later installed
 
 If you missed Day 1 of the **Complete Intro to React, v9 workshop**, follow these instructions to get set up for Day 2.
 
@@ -54,4 +54,14 @@ You also need to run the API server which is our data source and static file ser
 # Open a second terminal and navigate to the citr-v9-project/api directory
 npm install # install the dependencies
 npm run dev # run the server
+```
+
+## Browser tests
+
+For lessons 14 through 17, run these commands inside the lesson directory:
+
+```bash
+npm ci
+npx playwright install chromium --only-shell
+npm test -- --run
 ```
