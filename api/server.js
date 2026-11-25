@@ -2,7 +2,7 @@ import fastify from "fastify";
 import fastifyStatic from "@fastify/static";
 import path from "path";
 import { fileURLToPath } from "url";
-import { AsyncDatabase } from "promised-sqlite3";
+import { DatabaseSync } from "node:sqlite";
 
 const server = fastify({
   logger: {
@@ -17,7 +17,15 @@ const PORT = process.env.PORT || 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const db = await AsyncDatabase.open("./pizza.sqlite");
+const database = new DatabaseSync(path.join(__dirname, "pizza.sqlite"));
+database.exec("PRAGMA busy_timeout = 1000");
+const db = {
+  all: (sql, parameters = []) => database.prepare(sql).all(...parameters),
+  get: (sql, parameters = []) => database.prepare(sql).get(...parameters),
+  run: (sql, parameters = []) => database.prepare(sql).run(...parameters),
+};
+
+server.addHook("onClose", () => database.close());
 
 server.register(fastifyStatic, {
   root: path.join(__dirname, "public"),
@@ -172,7 +180,7 @@ server.post("/api/order", async function createOrder(req, res) {
       "INSERT INTO orders (date, time) VALUES (?, ?)",
       [date, time]
     );
-    const orderId = result.lastID;
+    const orderId = result.lastInsertRowid;
 
     const mergedCart = cart.reduce((acc, item) => {
       const id = item.pizza.id;

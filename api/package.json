@@ -12,9 +12,11 @@
   "type": "module",
   "description": "",
   "dependencies": {
-    "@fastify/static": "7.0.4",
-    "fastify": "4.28.1",
-    "pino-pretty": "11.2.2",
-    "promised-sqlite3": "2.1.0"
+    "@fastify/static": "10.1.12",
+    "fastify": "5.12.8",
+    "pino-pretty": "11.2.2"
+  },
+  "engines": {
+    "node": "^22.13.0 || >=24.0.0"
   }
 }
