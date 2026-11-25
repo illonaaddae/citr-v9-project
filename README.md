@@ -55,3 +55,13 @@ You also need to run the API server which is our data source and static file ser
 npm install # install the dependencies
 npm run dev # run the server
 ```
+
+## Browser tests
+
+For lessons 14 through 17, run these commands inside the lesson directory:
+
+```bash
+npm ci
+npx playwright install chromium --only-shell
+npm test -- --run
+```

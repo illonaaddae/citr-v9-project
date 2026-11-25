@@ -18,7 +18,7 @@ test("correctly renders a header with a zero cart count", async () => {
   });
 
   const router = createRouter({ routeTree: rootRoute });
-  const screen = render(<RouterProvider router={router}></RouterProvider>);
+  const screen = await render(<RouterProvider router={router}></RouterProvider>);
 
   const itemsInCart = await screen.getByTestId("cart-number");
 
@@ -38,7 +38,7 @@ test("correctly renders a header with a three cart count", async () => {
   });
 
   const router = createRouter({ routeTree: rootRoute });
-  const screen = render(<RouterProvider router={router}></RouterProvider>);
+  const screen = await render(<RouterProvider router={router}></RouterProvider>);
 
   const itemsInCart = await screen.getByTestId("cart-number");
 
